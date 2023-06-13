@@ -1,0 +1,730 @@
+body, html
+{ 
+  height: 300%;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px
+}
+
+#Logo
+{
+  grid-area: logo;
+
+  background-color: lightgray;
+}
+
+#Login
+{
+  grid-area: login;
+
+  background-color: lightgray;
+
+  padding-top: 1.5em;
+  padding-right: 0.4em;
+  padding-left: 4em;
+
+  text-align: center;
+  font-weight: bold;
+}
+
+#Head{
+  grid-area: head;
+
+  height: 5em;
+  width: auto;
+
+  background-color: lightgray;
+
+  padding-top: 1.5em;
+  padding-left: 0.7em;
+  padding-bottom: 2em;
+
+  text-align: center;
+}
+
+#Main{
+  grid-area: main;
+
+  padding-left: 1em;
+  padding-right: 2em;
+  padding-top: 2em;
+}
+
+#Center{
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-areas: 
+    "logo head head login"
+    "main main main main";
+}
+
+#loginbtn
+{
+  font-size: clamp(10px, 4vw, 27px);
+  font-family: Impact, 'Arial Narrow Bold', sans-serif;
+
+  background-color: darkgray;
+
+  border-style: none none solid solid;
+  border-width: 1px;
+
+  max-width: 130px;
+
+  margin-bottom: 2em;
+}
+
+#logoutbtn
+{
+  font-size: clamp(10px, 4vw, 27px);
+  font-family: Impact, 'Arial Narrow Bold', sans-serif;
+
+  background-color: darkgray;
+
+  border-style: none none solid solid;
+  border-width: 1px;
+
+  max-width: 130px;
+
+  margin-bottom: 0.7em;
+
+  padding: 0.4em;
+}
+
+.form-label 
+{
+  font-weight: bold;
+  width: 70px;
+
+  white-space: nowrap;
+
+  padding-right: 1em;
+}
+
+.flex-row-box
+{
+  display: flex;
+  flex-direction: row;
+
+  align-items: flex-start;
+
+  margin-bottom: 1em;
+}
+.flex-column-box
+{
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: flex-start;
+
+  margin-bottom: 1em;
+}
+.flex-item
+{
+  display: flex;
+  padding-bottom: 0.3em;
+}
+.form-control-wrapper 
+{
+  display: flex;
+  padding-right: 3em;
+  padding-left: 2em;
+  padding-bottom: 1em;
+
+  margin: 1px auto;
+}
+
+.gear-box
+{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding-top: 0.5em;
+  padding-left: 0.5em;
+  padding-top: 0.5em;
+
+  height: 10em;
+  width: 10em;
+
+  margin-right: 0.5em;
+}
+.gear-header
+{
+  font-weight: bold;
+}
+.gear-rarity
+{
+  border: 1px solid black;
+  border-style: solid none none solid;
+  border-top-left-radius: 2em;
+
+  background-color: rgb(232, 209, 209);
+
+  align-self: flex-end;
+  margin-top: auto;
+
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-right: 0.2em;
+  padding-bottom: 0.2em;
+}
+.gear-select
+{
+  padding-left: 0.2em;
+  margin-right: 0.5em;
+}
+
+.inputfield 
+{
+  width: 300px;
+  height: 30px;
+  font-size: 1em;
+  font-weight: normal;
+  color: black;
+
+  font-size: clamp(10px, 4vw, 20px);
+
+}
+.inputfield:focus
+{
+  background-color: rgb(243, 243, 243);
+}
+.inputfield:disabled
+{
+  font-weight: bold;
+  background-color: white;
+  border-color: rgba(0, 0, 0, 0);
+
+  font-size: clamp(10px, 4vw, 27px);
+}
+
+.selectfield
+{
+  width: 308px;
+  height: 30px;
+  font-size: 1em;
+  font-weight: normal;
+  color: black;
+  opacity: 1;
+}
+.selectfield:focus
+{
+  background-color: rgb(243, 243, 243);
+}
+.selectfield:disabled
+{
+  font-weight: bold;
+  font-size: clamp(10px, 4vw, 27px);
+
+  border-color: 5px solid rgba(255, 255, 255, 0);
+  outline: 5px solid white;
+}
+
+.valuebtn, .valuebtn-non
+{
+  font-weight: normal;
+  background-color: lightgray;
+  border: none;
+
+  width: 3em;
+  height: 1.8em;
+
+  transition: background-color 0.2s ease;
+}
+.valuebtn:hover, .valuebtn-non:hover
+{
+  font-weight: bold;
+  background-color: rgb(150, 150, 150);
+}
+.valuebtn:active, .valuebtn-non:active
+{
+  background-color: rgb(247, 247, 247);
+}
+.valuebtn:disabled
+{
+  background-color: rgb(227, 227, 227);
+  font-weight: bold;
+}
+
+.addbtn
+{
+  font-weight: normal;
+  background-color: lightgray;
+  border: none;
+
+  width: 10em;
+  height: 2em;
+  margin-bottom: 2em;
+
+  transition: background-color 0.2s ease;
+}
+.addbtn:hover, .normalbtn:hover, .closebtn:hover, .detatchbtn:hover
+{
+  font-weight: bold;
+  background-color: rgb(150, 150, 150);
+}
+.addbtn:active, .closebtn:active, .detatchbtn:active
+{
+  background-color: rgb(247, 247, 247);
+}
+.addbtn:disabled, .closebtn:disabled
+{
+  background-color: rgb(247, 247, 247);
+  font-weight: normal;
+}
+
+.skill, .trait, .knowledge, .item, .gear, .ring, .note
+{
+  display: flex;
+  flex-direction: column;
+  border: 2px solid gray;
+  max-width:max-content;
+
+  padding-left: 1em;
+  padding-top: 0.5em;
+  padding-right: 1em;
+  padding-bottom: 1.5em;
+
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+
+  box-shadow: 0.15em 0.15em 6px;
+}
+
+.statscontainer
+{
+  border: 2px solid gray;
+
+  padding-left: 1em;
+  padding-top: 0.5em;
+  padding-right: 1em;
+
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+
+  box-shadow: 0.3em 0.3em 10px;
+}
+.statsvaluecontainer
+{
+  padding-left: 1em;
+  padding-top: 0.5em;
+
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+}
+
+.valuetext
+{
+  padding-left: 1em;
+  padding-right: 0.7em;
+
+  font-size: clamp(10px, 4vw, 27px);
+  white-space: nowrap;
+}
+.basestat
+{
+  padding-right: 1em;
+  padding-left: 1em;
+
+  font-size: clamp(10px, 4vw, 27px);
+}
+
+/* Note Shit */
+.note-detatched
+{
+  position: absolute;
+  transform:translate3d(-50%,-50%,0);
+  transition:transform 0.2s cubic-bezier(.02,1.23,.79,1.08);
+
+  display: flex;
+  flex-direction: column;
+  border: 2px solid gray;
+  max-width:max-content;
+
+  padding-left: 1em;
+  padding-top: 0.5em;
+  padding-right: 1em;
+  padding-bottom: 1.5em;
+
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+
+  box-shadow: 0.2em 0.2em 10px;
+
+  background-color: rgb(219, 219, 121);
+}
+
+.note-header
+{
+  width: 300px;
+  height: 30px;
+  font-size: 1em;
+  font-weight: normal;
+  color: black;
+
+  font-size: clamp(10px, 4vw, 20px);
+}
+
+.note-textarea
+{
+  min-width: 302px;
+  width: 300px;
+  height: 80px;
+
+  resize: both;
+  padding-top: 0.5em;
+  margin-top: 1em;
+
+  font-size: clamp(10px, 4vw, 18px);
+}
+
+.detatchbtn
+{
+  font-weight: normal;
+  background-color: lightgray;
+  border: none;
+
+  margin-top: 0.4em;
+
+  transition: background-color 0.2s ease;
+}
+
+.dice
+{
+  display: flex;
+  flex-direction: column;
+  border: 2px solid gray;
+  max-width:max-content;
+
+  padding-left: 1em;
+  padding-top: 0.5em;
+  padding-right: 1em;
+  padding-bottom: 1.5em;
+
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+
+  box-shadow: 0.15em 0.15em 6px;
+}
+
+.rollOutputDisp
+{
+  display: flexbox;
+
+  border: 1px solid black;
+  width: 115px;
+  height: 75px;
+
+  text-align: center;
+  font-weight: bold;
+
+  padding-top: 37px;
+
+  font-size: clamp(15px, 4vw, 40px);
+}
+
+.rollOutputDisp-shake
+{
+  display: flexbox;
+
+  border: 1px solid black;
+  width: 115px;
+  height: 75px;
+
+  text-align: center;
+  font-weight: bold;
+
+  padding-top: 37px;
+
+  font-size: clamp(15px, 4vw, 40px);
+
+  animation: tilt-shaking 0.25s infinite;
+}
+
+@keyframes tilt-shaking {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(0eg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.dice-select-box
+{
+  width: fit-content;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 2px solid gray;
+
+  padding-left: 1em;
+  padding-top: 0.5em;
+  padding-right: 1em;
+  padding-bottom: 1.5em;
+
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+
+  box-shadow: 0.1em 0.1em 6px;
+  font-size: clamp(15px, 4vw, 20px);
+}
+
+.dice-detatched
+{
+  position: absolute;
+  transform:translate3d(-50%,-50%,0);
+  transition:transform 0.2s cubic-bezier(.02,1.23,.79,1.08);
+
+  display: flex;
+  flex-direction: column;
+  border: 2px solid gray;
+  max-width:max-content;
+
+  padding-left: 1em;
+  padding-top: 0.5em;
+  padding-right: 1em;
+  padding-bottom: 1.5em;
+
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+
+  box-shadow: 0.2em 0.2em 10px;
+
+  background-color: rgb(219, 219, 121);
+}
+
+.dice-header
+{
+  padding-left: 1em;
+  padding-right: 0.7em;
+
+  align-self: center;
+
+  font-weight: bold;
+  font-size: clamp(15px, 4vw, 25px);
+  white-space: nowrap;
+}
+
+.dice-roll-btn
+{
+  border: 1px solid rgba(0, 0, 0, 0.302);
+  border-radius: 1em;
+  width: 4em;
+  height: auto;
+
+  padding: 0.5em;
+
+  align-self: flex-end;
+
+  margin-left: 2em;
+  margin-bottom: 1em;
+
+  box-shadow: 6px 6px 0em ;
+}
+.dice-roll-btn:hover
+{
+  border: 1px solid black;
+  background-color: rgb(240, 157, 157);
+
+  border-radius: 1em;
+
+  width: 4em;
+  height: auto;
+
+  margin-left: 2em;
+  box-shadow: 4px 4px 0em ;
+}
+.dice-roll-btn:active
+{
+  border: 1px solid white;
+  background-color: rgb(239, 127, 127);
+
+  border-radius: 1em;
+
+  width: 4em;
+  height: auto;
+
+  margin-left: 2em;
+  box-shadow: 0px 0px 0em ;
+}
+
+.gear-check-box
+{
+  width: 2em;
+  height: 2em;
+
+  margin-top: -0.1em;
+
+  border-radius: 10em;
+}
+
+.closebtn
+{
+  font-weight: normal;
+  background-color: lightgray;
+  border: none;
+
+  margin-top: 0.4em;
+
+  transition: background-color 0.2s ease;
+}
+
+.pageLogo
+{
+  width: 100%;
+  height: auto;
+  padding-top: 1.5em;
+}
+
+.navbtn
+{
+  font-size: clamp(8px, 4vw, 20px);
+}
+
+.textheader
+{
+  font-size: clamp(7px, 4vw, 18px);
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.textnormal
+{
+  font-size: clamp(10px, 4vw, 27px);
+  text-align: start;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+label
+{
+  font-size: clamp(10px, 4vw, 20px);
+  font-weight: bold;
+  text-align: start;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Login Box Css*/
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  background-color: white;
+
+  border: 3px solid rgb(227, 227, 227);
+  text-align: center;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 80%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: rgb(228, 228, 228);
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: lightgray;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn{
+  background-color: rgba(255, 0, 0, 0.596);
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 80%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+/* Dropdown for the header */
+.headerbtn
+{
+  font-size: clamp(10px, 4vw, 27px);
+  font-family: Impact, 'Arial Narrow Bold', sans-serif;
+  border: none;
+  background-color: lightgray;
+}
+.headerspace
+{
+  padding-left: 25%;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: lightgray;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content div, a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content div:hover, a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.char-display-box
+{
+  display: flex;
+  width: 30em;
+
+  border: 1px solid black;
+  border-radius: 1em;
+  box-shadow: 0.3em 0.3em 0.1em gray;
+
+  padding: 1em;
+  margin-bottom: 2em;
+}
+
+.char-display-text
+{
+  padding-top: 1.1em;
+  padding-right: 3em;
+  font-size: clamp(4px, 4vw, 17px);
+  font-weight: bold;
+}
+
+.char-display-btn
+{
+  font-weight: normal;
+  background-color: lightgray;
+  border: none;
+
+  transition: background-color 0.2s ease;
+}
+
+.health-label
+{
+
+}
