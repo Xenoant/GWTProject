@@ -69,7 +69,10 @@ session_start();
             ?>
         </div>
         <div id="Main">
-            
+            <!-- displays basically all user chars that has been added to the session -->
+            <?php
+                
+            ?>
         </div>
     </div>
 </body>

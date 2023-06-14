@@ -81,6 +81,11 @@ session_start();
 
                     $files = scandir($dir);
                     foreach ($files as $file) {
+                        if ($file === '.' || $file === '..') {
+                            // Skip the current iteration if the file is "." or ".."
+                            continue;
+                        }
+
                         $f_path = $dir . '/' . $file;
                         // process
                         $jsonData = file_get_contents($f_path);

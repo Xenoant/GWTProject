@@ -3,10 +3,6 @@ var sessionData = {
     players: []
 }
 
-document.getElementById("ses-ident").addEventListener("change", function(){
-  sessionData.ident = this.value;
-});
-
 function addPlayer(){
 
     var playerContainer = document.createElement("div");
@@ -152,3 +148,17 @@ function setSessionData(jsonData){
     document.getElementById("session_display").style.display = "block";
     displaySessionData(true);
 }
+
+function displaySession(filename)
+{
+  window.location.href = "session-display.php?filename=" + filename;
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  try{
+    document.getElementById("ses-ident").addEventListener("change", function(){
+      sessionData.ident = this.value;
+    });
+  }
+  catch {}
+});
