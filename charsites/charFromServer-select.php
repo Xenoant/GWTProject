@@ -1,3 +1,7 @@
+<?php 
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 
@@ -40,7 +44,6 @@
         </div>
         <div id="Login">
             <?php
-                session_start();
                 if(isset($_SESSION['username'])) {
                     // User logged in
                     $username = $_SESSION['username'];

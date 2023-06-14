@@ -52,6 +52,10 @@ function login($username, $password) {
             header("Location: ../login/login-page.php?error=$error");
             exit;
         }
+    } else {
+        $error = 'No such <strong>User</strong>...';
+        header("Location: ../login/login-page.php?error=$error");
+        exit;
     }
 }
 
