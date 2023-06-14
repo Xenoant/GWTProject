@@ -39,9 +39,9 @@ session_start();
             <div class="dropdown">
                 <button class="headerbtn">Character</button>
                 <div class="dropdown-content">
-                  <a href="CharSites/charFromFile.php">Open from file</a>
-                  <a href="CharSites/charFromServer-select.php">Open from Server</a>
-                  <a href="CharSites/charNew.php">New Character</a>
+                  <a href="../CharSites/charFromFile.php">Open from file</a>
+                  <a href="../CharSites/charFromServer-select.php">Open from Server</a>
+                  <a href="../CharSites/charNew.php">New Character</a>
                 </div>
             </div>
 
@@ -69,7 +69,42 @@ session_start();
             ?>
         </div>
         <div id="Main">
-            
+
+        <?php
+            // here will be the charackters from the user
+            if(isset($_SESSION['username'])) {
+                // User logged in
+                $username = $_SESSION['username'];
+                $dir = "../UserData/" . $username . "/master";
+
+                if (is_dir($dir)){
+
+                    $files = scandir($dir);
+                    foreach ($files as $file) {
+                        $f_path = $dir . '/' . $file;
+                        // process
+                        $jsonData = file_get_contents($f_path);
+                        $data = json_decode($jsonData);
+
+                        $name = $data->ident;
+
+                        echo "
+                            <div class='char-display-box'>
+                                <div class='flex-row-box'>
+                                    <div class='char-display-text'>
+                                        Name: $name
+                                    </div>
+                                </div>
+                                <button class='char-display-btn' onclick='displaySession(\"$file\");'>Select Session</button>
+                            </div>";
+                    }
+                }
+            }
+            else {
+                echo "Please log in to get acces to your saved chars or register to save chars online.";
+            }
+        ?>
+
         </div>
     </div>
 </body>

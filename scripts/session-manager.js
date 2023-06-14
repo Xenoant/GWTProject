@@ -1,7 +1,11 @@
 var sessionData = {
-    master: "",
+    ident: "",
     players: []
 }
+
+document.getElementById("ses-ident").addEventListener("change", function(){
+  sessionData.ident = this.value;
+});
 
 function addPlayer(){
 
@@ -36,6 +40,7 @@ function addPlayer(){
 
     var checkBtn = document.createElement("button");
         checkBtn.innerHTML = "Validate";
+        checkBtn.style.backgroundColor = "lightgray";
 
 
     playerContainer.appendChild(nameContainer);
@@ -50,36 +55,52 @@ function addPlayer(){
     }
 
     inputName.addEventListener("change", function(){
-        
+        playerData.username = inputName.value;
+        checkBtn.style.backgroundColor = "lightgray";
+    });
+    inputChar.addEventListener("change", function(){
+        playerData.char = inputChar.value;
+        checkBtn.style.backgroundColor = "lightgray";
     });
 
     checkBtn.addEventListener("click", function(){
-        checkForUser(playerData.username, playerData.username);
+      checkForUser(playerData.username, playerData.char, function(result) {
+      if (result) {
+          checkBtn.style.backgroundColor = "lightgreen";
+      } else {
+          checkBtn.style.backgroundColor = "lightcoral";
+          alert("NotFound");
+      }
+    });
     });
 
     sessionData.players.push(playerData);
 }
 
-function checkForUser(username, charname) {
-    var xhr = new XMLHttpRequest();
-    var url = '/searchUser?username=' + encodeURIComponent(username) + '&charname=' + encodeURIComponent(charname);
-    
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        var response = JSON.parse(xhr.responseText);
-        if (response.exists) {
-          console.log('Der Benutzer und der Charakter existieren.');
-        } else {
-          console.log('Der Benutzer und/oder der Charakter existieren nicht.');
-        }
+function checkForUser(username, charname, callback) {
+  var xhr = new XMLHttpRequest();
+  var url = '../backendscripts/searchUser.php?username=' + encodeURIComponent(username) + '&charname=' + encodeURIComponent(charname);
+
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      var response = JSON.parse(xhr.responseText);
+      if (response.exists) {
+        console.log('Der Benutzer und der Charakter existieren.');
+        callback(true);
       } else {
-        console.log('Fehler bei der Serveranfrage. Status: ' + xhr.status);
+        console.log('Der Benutzer und/oder der Charakter existieren nicht.');
+        callback(false);
       }
-    };
-    
-    xhr.open('GET', url, true);
-    xhr.send();
+    } else {
+      console.log('Fehler bei der Serveranfrage. Status: ' + xhr.status);
+      callback(false);
+    }
+  };
+
+  xhr.open('GET', url, true);
+  xhr.send();
 }
+
   
 
 // send data to server

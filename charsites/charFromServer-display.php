@@ -38,9 +38,9 @@ session_start();
             <div class="dropdown">
                 <button class="headerbtn">Character</button>
                 <div class="dropdown-content">
-                  <a href="CharSites/charFromFile.php">Open from file</a>
-                  <a href="CharSites/charFromServer-select.php">Open from Server</a>
-                  <a href="CharSites/charNew.php">New Character</a>
+                    <a href="charFromFile.php">Open from file</a>
+                    <a href="charFromServer-select.php">Open from Server</a>
+                    <a href="charNew.php">New Character</a>
                 </div>
             </div>
 
@@ -49,8 +49,8 @@ session_start();
             <div class="dropdown">
                 <button class="headerbtn">Session</button>
                 <div class="dropdown-content">
-                    <a href="sessions/session-create.php">Create</a>
-                    <a href="sessions/session-select.php">Open from Server</a>
+                    <a href="../sessions/session-create.php">Create</a>
+                    <a href="../sessions/session-select.php">Open from Server</a>
                 </div>
             </div>
         </header>

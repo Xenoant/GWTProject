@@ -16,7 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // User is logged in 
             // Prepare the file path
             $username = $_SESSION['username'];
-            $directory = "../UserData/$username/master"; 
+            $directory = "../UserData/" . $username . "/master";
+            if (!file_exists($directory)){
+                mkdir($directory);
+            }
 
             $filename = 'session-' . $_SESSION['username'] . uniqid() . '.json';
             echo "$filename <br>";
@@ -46,7 +49,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
         else{
             $error = "You are not logged in. You cant save your char online.";
-            // TODO: send error msg back
         }
     }
 } 

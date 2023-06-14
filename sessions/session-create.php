@@ -39,9 +39,9 @@ session_start();
             <div class="dropdown">
                 <button class="headerbtn">Character</button>
                 <div class="dropdown-content">
-                  <a href="CharSites/charFromFile.php">Open from file</a>
-                  <a href="CharSites/charFromServer-select.php">Open from Server</a>
-                  <a href="CharSites/charNew.php">New Character</a>
+                  <a href="../CharSites/charFromFile.php">Open from file</a>
+                  <a href="../CharSites/charFromServer-select.php">Open from Server</a>
+                  <a href="../CharSites/charNew.php">New Character</a>
                 </div>
             </div>
 
@@ -77,12 +77,17 @@ session_start();
 
             <div class="flex-column-box">
                 <div>Session create system</div><br><br>
+                <div class="flex-row-box">
+                    <div>Session identifier: </div>
+                    <input type="text" class="inputfield" id="ses-ident">
+                </div>
                 <div class="flex-column-box" class="user" id="user">
                     
                 </div>
                 <button class="addbtn" onclick="addPlayer();">Add Player</button>
             </div>
             <input type="submit" id="create" class="addbtn" onclick="submitSessionData();">
+
             </form>
         </div>
     </div>
