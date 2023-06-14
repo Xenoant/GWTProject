@@ -13,10 +13,11 @@ session_start();
     <script language="javascript" type="text/javascript" src="../scripts/script.js">
         window.onload = init;
     </script>
+    <script language="javascript" type="text/javascript" src="../scripts/session-manager.js"></script>
     <title>Dungeons and Dragons</title>
 </head>
 
-<body onload="initLoadChar()">
+<body>
     <div id="Center">
         <div id="Logo">
             <img class="pageLogo" src="../Images/logo.png" alt="D & D" style="color: rgb(156, 0, 0);">
@@ -49,8 +50,8 @@ session_start();
             <div class="dropdown">
                 <button class="headerbtn">Session</button>
                 <div class="dropdown-content">
-                    <a href="sessions/session-create.php">Create</a>
-                    <a href="sessions/session-select.php">Open from Server</a>
+                    <a href="session-create.php">Create</a>
+                    <a href="session-select.php">Open from Server</a>
                 </div>
             </div>
         </header>
@@ -68,54 +69,7 @@ session_start();
             ?>
         </div>
         <div id="Main">
-            <?php
-                // here will be the charackters from the user
-                if(isset($_SESSION['username'])) {
-                    // User logged in
-                    $username = $_SESSION['username'];
-                    $dir = "../UserData/$username";
-
-                    if (is_dir($dir)){
-
-                        $files = scandir($dir);
-                        foreach ($files as $file) {
-                            if ($file == 'user_pw'){
-                                continue;
-                            }
-                            elseif ($file != '.' && $file != '..'){
-                                $f_path = $dir . '/' . $file;
-
-                                // process
-                                $jsonData = file_get_contents($f_path);
-                                $data = json_decode($jsonData);
-
-                                $name = $data->name;
-                                $race = $data->race;
-                                $class = $data->class;
-
-                                echo "
-                                    <div class='char-display-box'>
-                                        <div class='flex-row-box'>
-                                            <div class='char-display-text'>
-                                                Name: $name
-                                            </div>
-                                            <div class='char-display-text'>
-                                                Race: $race
-                                            </div>
-                                            <div class='char-display-text'>
-                                                Class: $class
-                                            </div>
-                                        </div>
-                                        <button class='char-display-btn' onclick='displayChar(\"$file\");'>Select Char</button>
-                                    </div>";
-                            }
-                        }
-                    }
-                }
-                else {
-                    echo "Please log in to get acces to your saved chars or register to save chars online.";
-                }
-            ?>
+            
         </div>
     </div>
 </body>

@@ -14,9 +14,6 @@ session_start();
         window.onload = init;
     </script>
     <title>Dungeons and Dragons</title>
-
-    
-
 </head>
 
 <body>
@@ -25,6 +22,8 @@ session_start();
             <img class="pageLogo" src="Images/logo.png" alt="D & D" style="color: rgb(156, 0, 0);">
         </div>
         <header id="Head">
+            <span class="headerspace"></span>
+
             <div class="dropdown">
                 <button class="headerbtn">Home</button>
                 <div class="dropdown-content">
@@ -32,7 +31,7 @@ session_start();
                   <div onclick="switchHomeElements(2);">Whats New?</div>
                   <div onclick="switchHomeElements(3);">Just a dice</div>
                 </div>
-              </div>
+            </div>
         
             <span class="headerspace"></span>
             
@@ -43,7 +42,18 @@ session_start();
                   <a href="CharSites/charFromServer-select.php">Open from Server</a>
                   <a href="CharSites/charNew.php">New Character</a>
                 </div>
-              </div>
+            </div>
+
+            <span class="headerspace"></span>
+
+            <div class="dropdown">
+                <button class="headerbtn">Session</button>
+                <div class="dropdown-content">
+                  <a href="sessions/session-create.php">Create</a>
+                  <a href="sessions/session-select.php">Open from Server</a>
+                </div>
+            </div>
+
         </header>
         <div id="Login">
             <?php

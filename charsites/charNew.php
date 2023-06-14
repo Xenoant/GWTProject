@@ -21,27 +21,39 @@ session_start();
         <div id="Logo">
             <img class="pageLogo" src="../Images/logo.png" alt="D & D" style="color: rgb(156, 0, 0);">
         </div>
-        <div id="Head">
+        <header id="Head">
+            <span class="headerspace"></span>
+
             <div class="dropdown">
                 <button class="headerbtn">Home</button>
                 <div class="dropdown-content">
                   <div onclick="switchHomeElements(1);">Information</div>
-                  <div onclick="switchHomeElements(2);">How to use</div>
+                  <div onclick="switchHomeElements(2);">Whats New?</div>
                   <div onclick="switchHomeElements(3);">Just a dice</div>
                 </div>
-              </div>
+            </div>
         
             <span class="headerspace"></span>
             
             <div class="dropdown">
                 <button class="headerbtn">Character</button>
                 <div class="dropdown-content">
-                  <a href="../CharSites/charFromFile.php">Open from file</a>
-                  <a href="../CharSites/charFromServer-select.php">Open from Server</a>
-                  <a href="../CharSites/charNew.php">New Character</a>
+                  <a href="CharSites/charFromFile.php">Open from file</a>
+                  <a href="CharSites/charFromServer-select.php">Open from Server</a>
+                  <a href="CharSites/charNew.php">New Character</a>
                 </div>
-              </div>
-        </div>
+            </div>
+
+            <span class="headerspace"></span>
+
+            <div class="dropdown">
+                <button class="headerbtn">Session</button>
+                <div class="dropdown-content">
+                    <a href="sessions/session-create.php">Create</a>
+                    <a href="sessions/session-select.php">Open from Server</a>
+                </div>
+            </div>
+        </header>
         <div id="Login">
             <?php
                 if(isset($_SESSION['username'])) {
@@ -209,6 +221,16 @@ session_start();
                                         <span class="valuetext" id="fth_disp">_placeholder</span>
                                         <button class="valuebtn" onclick="decValue('fth');">-</button>
                                         <span class="valuetext" id="fth_disp_extra">_placeholder</span>
+                                    </div>
+                                </div>
+                                <div class="flex-item">
+                                    <label class="form-label" for="per">Per: </label>
+                                    <div class="form-control-wrapper">
+                                        <span class="basestat" name="per">0</span>
+                                        <button class="valuebtn" onclick="addValue('per');">+</button>
+                                        <span class="valuetext" id="per_disp">_placeholder</span>
+                                        <button class="valuebtn" onclick="decValue('per');">-</button>
+                                        <span class="valuetext" id="per_disp_extra">_placeholder</span>
                                     </div>
                                 </div>
                             </div>

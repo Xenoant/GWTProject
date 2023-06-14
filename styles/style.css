@@ -31,8 +31,12 @@ body, html
 #Head{
   grid-area: head;
 
-  height: 5em;
+  display: flex;
+  flex-direction: row;
+
+  height: 6em;
   width: auto;
+  min-width: 10em;
 
   background-color: lightgray;
 
@@ -656,7 +660,7 @@ label
 }
 .headerspace
 {
-  padding-left: 25%;
+  padding-left: clamp(10%, 4vw, 25%);
 }
 
 /* The container <div> - needed to position the dropdown content */

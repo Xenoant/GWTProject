@@ -80,7 +80,8 @@ var charData = {
     { name: "int", value: 0 },
     { name: "wis", value: 0 },
     { name: "fth", value: 0 },
-    { name: "lck", value: 0 }
+    { name: "lck", value: 0 },
+    { name: "per", value: 0 }
   ],
   notes: [],
   dices: []
@@ -146,6 +147,12 @@ function changeElement(key, value) {
     if (key != "free" && key != "base" && key != "mana" && key != "health"){
       charData.remaining_free -= value;
     }
+    else if (key === "free" && value > 0){
+      charData.remaining_free += 1;
+    }
+    else if (key === "free" && value < 0){
+      charData.remaining_free -= 1;
+    }
 
     displayCharData(false);
   } else {
@@ -205,6 +212,7 @@ function displayCharData(display)
   document.getElementById("wis_disp").innerHTML = charData.wis;
   document.getElementById("fth_disp").innerHTML = charData.fth;
   document.getElementById("lck_disp").innerHTML = charData.lck;
+  document.getElementById("per_disp").innerHTML = charData.per;
   try{
     document.getElementById("health_disp").innerHTML = charData.health + " / " + getMaxHealth();
     document.getElementById("mana_disp").innerHTML = charData.mana + " / " + getMaxMana();  
@@ -219,6 +227,7 @@ function displayCharData(display)
   document.getElementById("wis_disp_extra").innerHTML = "( + " + charData.gearStat[6].value + ")";
   document.getElementById("fth_disp_extra").innerHTML = "( + " + charData.gearStat[7].value + ")";
   document.getElementById("lck_disp_extra").innerHTML = "( + " + charData.gearStat[8].value + ")";
+  document.getElementById("per_disp_extra").innerHTML = "( + " + charData.gearStat[9].value + ")";
 
   document.getElementById("in_name").value = charData.name;
   document.getElementById("in_gender").value = charData.gender;
@@ -700,7 +709,8 @@ function addItem(interactable, parseData) {
       { name: "int", value: 0 },
       { name: "wis", value: 0 },
       { name: "fth", value: 0 },
-      { name: "lck", value: 0 }
+      { name: "lck", value: 0 },
+      { name: "per", value: 0 }
     ]
   } : parseData;
 
@@ -866,7 +876,8 @@ function changedGear(id, selectid, nameid, rarityid)
     { name: "int", value: 0 },
     { name: "wis", value: 0 },
     { name: "fth", value: 0 },
-    { name: "lck", value: 0 }
+    { name: "lck", value: 0 },
+    { name: "per", value: 0 }
   ]
 
   for (var itemname of charData.gear) {
