@@ -108,6 +108,7 @@ function updateGearDisplay()
 
 // change an element in charData
 function changeElement(key, value) {
+  if (amount == undefined || amount == null){return;}
   console.log("Try to change [" + key + "] by [" + value + "]");
 
   if (charData.remaining_free - value < 0 && key != "free" && key != "base" && key != "mana" && key != "health"){

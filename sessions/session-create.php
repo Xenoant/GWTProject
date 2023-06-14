@@ -13,10 +13,11 @@ session_start();
     <script language="javascript" type="text/javascript" src="../scripts/script.js">
         window.onload = init;
     </script>
+    <script language="javascript" type="text/javascript" src="../scripts/session-manager.js"></script>
     <title>Dungeons and Dragons</title>
 </head>
 
-<body onload="initLoadChar()">
+<body>
     <div id="Center">
         <div id="Logo">
             <img class="pageLogo" src="../Images/logo.png" alt="D & D" style="color: rgb(156, 0, 0);">
@@ -63,11 +64,13 @@ session_start();
             <form action="javascript:void(0)">
 
             <div class="flex-column-box">
-                <div class="flex-row-box">
-
+                <div>Session create system</div><br><br>
+                <div class="flex-column-box" class="user" id="user">
+                    
                 </div>
+                <button class="addbtn" onclick="addPlayer();">Add Player</button>
             </div>
-            
+            <input type="submit" id="create" class="addbtn" onclick="submitSessionData();">
             </form>
         </div>
     </div>

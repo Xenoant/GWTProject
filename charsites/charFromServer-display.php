@@ -55,6 +55,7 @@
         <div id="Main">
             <!-- Insert Char Display here: -->
             <div id="char_display" style="display: none;">
+            <div>Char ID: <?php echo $_GET['filename']; ?></div>
                 <div class="flex-row-box">
                     <div class="flex-box">
                         <div class="flex-column-box">

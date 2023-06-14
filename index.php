@@ -25,7 +25,7 @@
                 <button class="headerbtn">Home</button>
                 <div class="dropdown-content">
                   <div onclick="switchHomeElements(1);">Information</div>
-                  <div onclick="switchHomeElements(2);">How to use</div>
+                  <div onclick="switchHomeElements(2);">Whats New?</div>
                   <div onclick="switchHomeElements(3);">Just a dice</div>
                 </div>
               </div>
@@ -65,10 +65,15 @@
                 </p>
             </div>
             <div id="part2" style="display: none;">
-                <p class="textheader">How it works</p>
-                <p class="textnormal">
-                    _how it works text
-                </p>
+                <p class="textheader">Whats New?</p>
+                <ol>
+                    <li> <strong> Session System</strong></li>
+                    <p>You heared right. As a Gamemaster you want to look at the charsheets of 
+                        your Members, right?
+                    </p>
+                    <li><strong>Secure Passowrd Save</strong></li>
+                    <p>Yeah. Your Password no longer gets saved in clear text. So I cant look at them. Nice or not?</p>
+                </ol>
             </div>
             <div id="part3" style="display: none;">
                 <div class="dice-select-box">

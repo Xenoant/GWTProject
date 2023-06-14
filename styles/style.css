@@ -274,7 +274,7 @@ body, html
   font-weight: normal;
 }
 
-.skill, .trait, .knowledge, .item, .gear, .ring, .note
+.skill, .trait, .knowledge, .item, .gear, .ring, .note, .player
 {
   display: flex;
   flex-direction: column;
