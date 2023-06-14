@@ -62,6 +62,7 @@ var charData = {
   int: 0,
   wis: 0,
   fth: 0,
+  per: 0,
   lck: 0,
 
   skills: [],
@@ -124,6 +125,7 @@ function changeElement(key, value) {
     if (charData[key] + value < 0){
       return;
     }
+
     if (key === "free" && value < 0 && charData.remaining_free <= charData.free){
       // hier müssen alle verteielten punkte resettet werden
       charData.str = 0;
@@ -134,6 +136,7 @@ function changeElement(key, value) {
       charData.dex = 0;
       charData.vit = 0;
       charData.int = 0;
+      charData.per = 0;
       charData.fth = 0;
       charData.remaining_free = charData.free;
     }
@@ -142,9 +145,6 @@ function changeElement(key, value) {
 
     if (key != "free" && key != "base" && key != "mana" && key != "health"){
       charData.remaining_free -= value;
-    }
-    else if (key !== "base" && key != "mana" && key != "health"){
-      charData.remaining_free = charData.free;
     }
 
     displayCharData(false);
