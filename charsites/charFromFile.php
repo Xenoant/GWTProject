@@ -147,6 +147,7 @@ session_start();
                                         <span class="valuetext" id="str_disp">_placeholder</span>
                                         <button class="valuebtn" onclick="decValue('str');">-</button>
                                         <span class="valuetext" id="str_disp_extra">_placeholder</span>
+                                        <span class="valuetext" id="str_disp_debuff">_placeholder</span>
                                     </div>
                                 </div>
                                 <div class="flex-item">
@@ -157,6 +158,7 @@ session_start();
                                         <span class="valuetext" id="agi_disp">_placeholder</span>
                                         <button class="valuebtn" onclick="decValue('agi');">-</button>
                                         <span class="valuetext" id="agi_disp_extra">_placeholder</span>
+                                        <span class="valuetext" id="agi_disp_debuff">_placeholder</span>
                                     </div>
                                 </div>
                                 <div class="flex-item">
@@ -167,6 +169,7 @@ session_start();
                                         <span class="valuetext" id="chr_disp">_placeholder</span>
                                         <button class="valuebtn" onclick="decValue('chr');">-</button>
                                         <span class="valuetext" id="chr_disp_extra">_placeholder</span>
+                                        <span class="valuetext" id="chr_disp_debuff">_placeholder</span>
                                     </div>
                                 </div>
                                 <div class="flex-item">
@@ -177,6 +180,7 @@ session_start();
                                         <span class="valuetext" id="wis_disp">_placeholder</span>
                                         <button class="valuebtn" onclick="decValue('wis');">-</button>
                                         <span class="valuetext" id="wis_disp_extra">_placeholder</span>
+                                        <span class="valuetext" id="wis_disp_debuff">_placeholder</span>
                                     </div>
                                 </div>
                                 <div class="flex-item">
@@ -187,6 +191,7 @@ session_start();
                                         <span class="valuetext" id="lck_disp">_placeholder</span>
                                         <button class="valuebtn" onclick="decValue('lck');">-</button>
                                         <span class="valuetext" id="lck_disp_extra">_placeholder</span>
+                                        <span class="valuetext" id="lck_disp_debuff">_placeholder</span>
                                     </div>
                                 </div>
                             </div>
@@ -219,6 +224,7 @@ session_start();
                                         <span class="valuetext" id="vit_disp">_placeholder</span>
                                         <button class="valuebtn" onclick="decValue('vit');">-</button>
                                         <span class="valuetext" id="vit_disp_extra">_placeholder</span>
+                                        <span class="valuetext" id="vit_disp_debuff">_placeholder</span>
                                     </div>
                                 </div>
                                 <div class="flex-item">
@@ -229,6 +235,7 @@ session_start();
                                         <span class="valuetext" id="dex_disp">_placeholder</span>
                                         <button class="valuebtn" onclick="decValue('dex');">-</button>
                                         <span class="valuetext" id="dex_disp_extra">_placeholder</span>
+                                        <span class="valuetext" id="dex_disp_debuff">_placeholder</span>
                                     </div>
                                 </div>
                                 <div class="flex-item">
@@ -239,6 +246,7 @@ session_start();
                                         <span class="valuetext" id="int_disp">_placeholder</span>
                                         <button class="valuebtn" onclick="decValue('int');">-</button>
                                         <span class="valuetext" id="int_disp_extra">_placeholder</span>
+                                        <span class="valuetext" id="int_disp_debuff">_placeholder</span>
                                     </div>
                                 </div>
                                 <div class="flex-item">
@@ -249,6 +257,7 @@ session_start();
                                         <span class="valuetext" id="fth_disp">_placeholder</span>
                                         <button class="valuebtn" onclick="decValue('fth');">-</button>
                                         <span class="valuetext" id="fth_disp_extra">_placeholder</span>
+                                        <span class="valuetext" id="fth_disp_debuff">_placeholder</span>
                                     </div>
                                 </div>
                                 <div class="flex-item">
@@ -259,11 +268,18 @@ session_start();
                                         <span class="valuetext" id="per_disp">_placeholder</span>
                                         <button class="valuebtn" onclick="decValue('per');">-</button>
                                         <span class="valuetext" id="per_disp_extra">_placeholder</span>
+                                        <span class="valuetext" id="per_disp_debuff">_placeholder</span>
                                     </div>
                                 </div>
                             </div>
                             
                         </div>
+
+                        <div id="debuff_disp">
+                            <h3>Buffs / Debuffs</h3>
+                        </div>
+                        <button id="addbtn" class="addbtn" onclick="addDebuff(true);">Add Buff/Debuff</button>
+
                         <div class="dice-select-box">
                             <h3>The Dice</h3>
                             <div class="flex-row-box">

@@ -278,7 +278,7 @@ body, html
   font-weight: normal;
 }
 
-.skill, .trait, .knowledge, .item, .gear, .ring, .note, .player
+.skill, .trait, .knowledge, .item, .gear, .ring, .note, .player, .debuff
 {
   display: flex;
   flex-direction: column;

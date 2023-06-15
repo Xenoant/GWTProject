@@ -65,6 +65,19 @@ var charData = {
   per: 0,
   lck: 0,
 
+  debuff: [],
+  debuffStat: [
+    { name: "str", value: 0 },
+    { name: "vit", value: 0 },
+    { name: "agi", value: 0 },
+    { name: "dex", value: 0 },
+    { name: "chr", value: 0 },
+    { name: "int", value: 0 },
+    { name: "wis", value: 0 },
+    { name: "fth", value: 0 },
+    { name: "lck", value: 0 },
+    { name: "per", value: 0 }
+  ],
   skills: [],
   traits: [],
   knows: [],
@@ -110,8 +123,7 @@ function updateGearDisplay()
 
 // change an element in charData
 function changeElement(key, value) {
-  if (value == undefined || value == null){
-    console.log("")
+  if (value == undefined || value == null || isNaN(value)){
     return;
   }
 
@@ -229,6 +241,17 @@ function displayCharData(display)
   document.getElementById("lck_disp_extra").innerHTML = "( + " + charData.gearStat[8].value + ")";
   document.getElementById("per_disp_extra").innerHTML = "( + " + charData.gearStat[9].value + ")";
 
+  document.getElementById("str_disp_debuff").innerHTML = (charData.debuffStat[0].value > 0 ? "( + " : "( ") + charData.debuffStat[0].value + ")";
+  document.getElementById("vit_disp_debuff").innerHTML = (charData.debuffStat[1].value > 0 ? "( + " : "( ") + charData.debuffStat[1].value + ")";
+  document.getElementById("agi_disp_debuff").innerHTML = (charData.debuffStat[2].value > 0 ? "( + " : "( ") + charData.debuffStat[2].value + ")";
+  document.getElementById("dex_disp_debuff").innerHTML = (charData.debuffStat[3].value > 0 ? "( + " : "( ") + charData.debuffStat[3].value + ")";
+  document.getElementById("chr_disp_debuff").innerHTML = (charData.debuffStat[4].value > 0 ? "( + " : "( ") + charData.debuffStat[4].value + ")";
+  document.getElementById("int_disp_debuff").innerHTML = (charData.debuffStat[5].value > 0 ? "( + " : "( ") + charData.debuffStat[5].value + ")";
+  document.getElementById("wis_disp_debuff").innerHTML = (charData.debuffStat[6].value > 0 ? "( + " : "( ") + charData.debuffStat[6].value + ")";
+  document.getElementById("fth_disp_debuff").innerHTML = (charData.debuffStat[7].value > 0 ? "( + " : "( ") + charData.debuffStat[7].value + ")";
+  document.getElementById("lck_disp_debuff").innerHTML = (charData.debuffStat[8].value > 0 ? "( + " : "( ") + charData.debuffStat[8].value + ")";
+  document.getElementById("per_disp_debuff").innerHTML = (charData.debuffStat[9].value > 0 ? "( + " : "( ") + charData.debuffStat[9].value + ")";
+
   document.getElementById("in_name").value = charData.name;
   document.getElementById("in_gender").value = charData.gender;
   document.getElementById("in_race").value = charData.race;
@@ -239,6 +262,12 @@ function displayCharData(display)
   // handle skill, trait, knowledge, items, gear display
   if (display)
   {
+    charData.dices.forEach(element => {
+      createDicePreset(element.sides, element.stat, element.gear);
+    });
+    charData.debuff.forEach(element => {
+      addDebuff(false, element.desc, element.stat, element.amount);
+    });
     charData.skills.forEach(element => {
       addSkill(false, element.name, element.description);
     });
@@ -328,6 +357,166 @@ function writeInputData()
   charData.job = document.getElementById("in_job").value;
   charData.rank = document.getElementById("in_rank").value;
 }
+
+function addDebuff(_description, _stat, _amount) {
+  // header
+  // Description Input
+  // Stat Select
+  // amount input
+
+  console.log("Adding Buff/Debuff container...");
+
+  var debuffContainer = document.createElement("div");
+  debuffContainer.className = "debuff";
+
+  var debuffNameHeader = document.createElement("div");
+  debuffNameHeader.className = "note-header";
+  debuffNameHeader.innerHTML = "Debuff";
+
+  var debuffDescInput = document.createElement("input");
+  debuffDescInput.type = "text";
+  debuffDescInput.className = "inputfield extrainputfield description_box";
+  debuffDescInput.placeholder = "How Long/ Why...";
+  debuffDescInput.style.resize = "both";
+
+  var debuffStatSelect = document.createElement("select");
+  var debuffStatOpt_1 = document.createElement("option");
+  var debuffStatOpt_2 = document.createElement("option");
+  var debuffStatOpt_3 = document.createElement("option");
+  var debuffStatOpt_4 = document.createElement("option");
+  var debuffStatOpt_5 = document.createElement("option");
+  var debuffStatOpt_6 = document.createElement("option");
+  var debuffStatOpt_7 = document.createElement("option");
+  var debuffStatOpt_8 = document.createElement("option");
+  var debuffStatOpt_9 = document.createElement("option");
+  var debuffStatOpt_10 = document.createElement("option");
+
+  debuffStatOpt_1.value = "str";
+  debuffStatOpt_2.value = "vit";
+  debuffStatOpt_3.value = "agi";
+  debuffStatOpt_4.value = "dex";
+  debuffStatOpt_5.value = "chr";
+  debuffStatOpt_6.value = "int";
+  debuffStatOpt_7.value = "wis";
+  debuffStatOpt_8.value = "fth";
+  debuffStatOpt_9.value = "lck";
+  debuffStatOpt_10.value = "per";
+  debuffStatSelect.className = "selectfield extraselectfield";
+  debuffStatSelect.value = "str";
+
+  debuffStatSelect.appendChild(debuffStatOpt_1);
+  debuffStatOpt_1.innerHTML = "Str";
+  debuffStatSelect.appendChild(debuffStatOpt_2);
+  debuffStatOpt_2.innerHTML = "Vit";
+  debuffStatSelect.appendChild(debuffStatOpt_3);
+  debuffStatOpt_3.innerHTML = "Agi";
+  debuffStatSelect.appendChild(debuffStatOpt_4);
+  debuffStatOpt_4.innerHTML = "Dex";
+  debuffStatSelect.appendChild(debuffStatOpt_5);
+  debuffStatOpt_5.innerHTML = "Chr";
+  debuffStatSelect.appendChild(debuffStatOpt_6);
+  debuffStatOpt_6.innerHTML = "Int";
+  debuffStatSelect.appendChild(debuffStatOpt_7);
+  debuffStatOpt_7.innerHTML = "Wis";
+  debuffStatSelect.appendChild(debuffStatOpt_8);
+  debuffStatOpt_8.innerHTML = "Fth";
+  debuffStatSelect.appendChild(debuffStatOpt_9);
+  debuffStatOpt_9.innerHTML = "Lck";
+  debuffStatSelect.appendChild(debuffStatOpt_10);
+  debuffStatOpt_10.innerHTML = "Per";
+
+  var debuffAmountInput = document.createElement("input");
+  debuffAmountInput.className = "inputfield extrainputfield" 
+  debuffAmountInput.type = "number";
+  debuffAmountInput.placeholder = "Enter amount...";
+  debuffAmountInput.value = 0;
+
+  var closeBtn = document.createElement("button");
+  closeBtn.className = "closebtn";
+  closeBtn.innerHTML = "Remove";
+
+  debuffContainer.appendChild(debuffNameHeader);
+  debuffContainer.appendChild(debuffDescInput);
+  debuffContainer.appendChild(debuffStatSelect);
+  debuffContainer.appendChild(debuffAmountInput);
+  debuffContainer.appendChild(closeBtn);
+
+  document.getElementById("debuff_disp").appendChild(debuffContainer);
+
+
+
+  var debuffData = {
+    desc: "",
+    stat: "",
+    amount: 0,
+  };
+
+  debuffDescInput.addEventListener("change", function(){
+    debuffData.desc = this.value;
+    console.log("Update Debuff desc: " + debuffData.desc);
+
+    var index = charData.debuff.indexOf(debuffData);
+    if (index === -1){
+      charData.debuff.push(debuffData);
+    }
+  });
+  debuffStatSelect.addEventListener("change", function(){
+    debuffData.stat = this.value;
+    console.log("Update Debuff stat: " + debuffData.stat);
+
+    var index = charData.debuff.indexOf(debuffData);
+    if (index === -1){
+      charData.debuff.push(debuffData);
+    }
+    updateDebuffStat();
+  });
+  debuffAmountInput.addEventListener("change", function(){
+    debuffData.amount = parseInt(this.value);
+    console.log("Update Debuff amount: " + debuffData.amount);
+    console.log(debuffData);
+
+    var index = charData.debuff.indexOf(debuffData);
+    if (index === -1){
+      charData.debuff.push(debuffData);
+    }
+    updateDebuffStat();
+  });
+  closeBtn.addEventListener("click", function(){
+    var index = charData.debuff.indexOf(debuffData);
+    if (index !== -1){
+      charData.debuff.splice(index, 1);
+    }
+    debuffContainer.remove();
+    updateDebuffStat();
+  }); 
+}
+
+function updateDebuffStat() {
+  console.log("Updating Debuff Stats!");
+  var newstats = [
+    { name: "str", value: 0 },
+    { name: "vit", value: 0 },
+    { name: "agi", value: 0 },
+    { name: "dex", value: 0 },
+    { name: "chr", value: 0 },
+    { name: "int", value: 0 },
+    { name: "wis", value: 0 },
+    { name: "fth", value: 0 },
+    { name: "lck", value: 0 },
+    { name: "per", value: 0 }
+  ];
+
+  for (var debuff of charData.debuff) {
+    var statObj = newstats.find(stat => stat.name === debuff.stat);
+    if (statObj) {
+      statObj.value += debuff.amount;
+    }
+  }
+
+  charData.debuffStat = newstats;
+  displayCharData(false);
+}
+
 
 function addSkill(interactable, _name, _desc)
 {
@@ -1089,6 +1278,7 @@ function createDicePreset(_sides, _value, _equip) {
   var diceStatOpt_7 = document.createElement("option");
   var diceStatOpt_8 = document.createElement("option");
   var diceStatOpt_9 = document.createElement("option");
+  var diceStatOpt_10 = document.createElement("option");
   diceStatOpt_0.value = "none";
   diceStatOpt_1.value = "str";
   diceStatOpt_2.value = "vit";
@@ -1099,6 +1289,7 @@ function createDicePreset(_sides, _value, _equip) {
   diceStatOpt_7.value = "wis";
   diceStatOpt_8.value = "fth";
   diceStatOpt_9.value = "lck";
+  diceStatOpt_10.value = "lck";
   diceStatSelect.className = "selectfield extraselectfield";
   
   diceStatSelect.appendChild(diceStatOpt_0);
@@ -1121,6 +1312,8 @@ function createDicePreset(_sides, _value, _equip) {
   diceStatOpt_8.innerHTML = "Fth";
   diceStatSelect.appendChild(diceStatOpt_9);
   diceStatOpt_9.innerHTML = "Lck";
+  diceStatSelect.appendChild(diceStatOpt_10);
+  diceStatOpt_9.innerHTML = "Per";
 
   var gearHolder = document.createElement("div");
   gearHolder.className = "flex-row-box";
@@ -1376,6 +1569,12 @@ function getCurStatValue(stat, gear){
   value += charData.base;
   value += charData[stat];
   console.log(charData[stat]);
+
+  Array.from(charData.debuffStat).forEach(element => {
+    if (element.name === stat){
+      value += element.amount;
+    }
+  });
 
   if (gear){
     Array.from(charData.gearStat).forEach(element => {

@@ -78,6 +78,11 @@ function addPlayer(){
 }
 
 function checkForUser(username, charname, callback) {
+
+  if (username === "" || charname === ""){
+    callback(false);
+  }
+
   var xhr = new XMLHttpRequest();
   var url = '../backendscripts/searchUser.php?username=' + encodeURIComponent(username) + '&charname=' + encodeURIComponent(charname);
 
