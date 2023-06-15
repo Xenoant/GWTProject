@@ -79,7 +79,7 @@ session_start();
 
                         $files = scandir($dir);
                         foreach ($files as $file) {
-                            if ($file == 'user_pw'){
+                            if ($file == 'user_pw' || $file == 'master'){
                                 continue;
                             }
                             elseif ($file != '.' && $file != '..'){
