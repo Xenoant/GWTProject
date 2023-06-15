@@ -1553,3 +1553,7 @@ function displayChar(filename)
 {
   window.location.href = "charFromServer-display.php?filename=" + filename;
 }
+
+function goBackToSession(filename){
+  window.location.href = "../sessions/session-display.php?filename=" + filename;
+}

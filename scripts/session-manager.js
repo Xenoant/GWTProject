@@ -3,6 +3,10 @@ var sessionData = {
     players: []
 }
 
+function displaySessionData(){
+
+}
+
 function addPlayer(){
 
     var playerContainer = document.createElement("div");
@@ -145,8 +149,7 @@ function submitSessionData(filename) {
   
 function setSessionData(jsonData){
     sessionData = jsonData;
-    document.getElementById("session_display").style.display = "block";
-    displaySessionData(true);
+    document.getElementById("session-display").style.display = "block";
 }
 
 function displaySession(filename)
@@ -162,3 +165,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   catch {}
 });
+
+function goToChar(user, char, ses){
+  window.location.href = "../charsites/charFromServer-display.php?username=" + user + "&filename=" + char + "&session=" + ses;
+}

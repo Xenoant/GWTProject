@@ -70,11 +70,57 @@ session_start();
         </div>
         <div id="Main">
             <!-- displays basically all user chars that has been added to the session -->
+            <div id="session-display">
             <?php
+                if(isset($_SESSION['username'])) {
+                    // User logged in
+                    $username = $_SESSION['username'];
+                    $filename = $_GET['filename'];
+                    $ses_data = file_get_contents("../UserData/$username/master/$filename");
+                
+                    // Decode the JSON data into an associative array
+                    $data = json_decode($ses_data, true);
+                
+                    // Check if the 'players' array exists
+                    if(isset($data['players'])) {
+                        // Loop through the players and display the information
+                        foreach($data['players'] as $player) {
+                            $name = $player['username'];
+                            $char = $player['char'];
+                            echo "Name: $name<br>";
+                            echo "Character: $char<br>";
+                            echo "<button class='addbtn' onclick='goToChar(\"$username\", \"$char\", \"$filename\")'>Select Char</button>";
+                        }
+                    } else {
+                        echo "No player information found.";
+                    }
+                } else {
+                    echo "Please log in to get access to your saved characters or register to save characters online.";
+                }
                 
             ?>
+            </div>
         </div>
     </div>
 </body>
+
+<?php
+    $jsonData = "";
+    if(isset($_SESSION['username'])) {
+        // User logged in
+        $username = $_SESSION['username'];
+        $filename = $_GET['filename'];
+        $jsonData = file_get_contents("../UserData/$username/master/$filename");
+    }
+    else {
+        echo "You are not Logged in. Please Log in and try again.";                                   
+    }
+?>
+
+<script>
+    var jsonData = <?php echo $jsonData ?>;
+    console.log(jsonData);
+    setSessionData(jsonData);
+</script>
 
 </html>

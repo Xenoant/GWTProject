@@ -20,6 +20,12 @@ session_start();
     <div id="Center">
         <div id="Logo">
             <img class="pageLogo" src="../Images/logo.png" alt="D & D" style="color: rgb(156, 0, 0);">
+            <?php 
+                if (isset($_GET['username']) && isset($_GET['session'])){
+                    $session = $_GET['session'];
+                    echo "<button class='normalbtn' onclick='goBackToSession(\"$session\")'>Back</button>";
+                }   
+            ?>
         </div>
         <header id="Head">
             <span class="headerspace"></span>
@@ -383,7 +389,7 @@ session_start();
             $jsonData = file_get_contents("../UserData/$username/$filename");
         }
         else {
-            echo "<a id='loginbtn' href='../login/login-page.php'>Login</a>";
+            echo "Please Log in to see you Chars!";                                   
         }
     ?>
 

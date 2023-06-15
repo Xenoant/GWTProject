@@ -106,7 +106,7 @@ session_start();
                 }
             }
             else {
-                echo "Please log in to get acces to your saved chars or register to save chars online.";
+                echo "Please log in to get acces to your saved sessions or register to save sessions online.";
             }
         ?>
 
