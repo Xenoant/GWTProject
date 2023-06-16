@@ -266,7 +266,7 @@ function displayCharData(display)
       createDicePreset(element.sides, element.stat, element.gear);
     });
     charData.debuff.forEach(element => {
-      addDebuff(false, element.desc, element.stat, element.amount);
+      addDebuff(element.desc, element.stat, element.amount);
     });
     charData.skills.forEach(element => {
       addSkill(false, element.name, element.description);
@@ -443,13 +443,23 @@ function addDebuff(_description, _stat, _amount) {
 
   document.getElementById("debuff_disp").appendChild(debuffContainer);
 
-
-
   var debuffData = {
     desc: "",
     stat: "",
     amount: 0,
   };
+  if (_description !== undefined && _description != null){
+    debuffDescInput.value = _description;
+    debuffData.desc = _description;
+  }
+  if (_stat !== undefined && _stat != null){
+    debuffStatSelect.value = _stat;
+    debuffData.stat = _stat;
+  }
+  if (_amount !== undefined && _amount != null){
+    debuffAmountInput.value = _amount;
+    debuffData.amount = _amount;
+  }
 
   debuffDescInput.addEventListener("change", function(){
     debuffData.desc = this.value;
