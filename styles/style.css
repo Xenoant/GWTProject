@@ -139,6 +139,15 @@ body, html
   margin: 1px auto;
 }
 
+.session-box
+{
+  border: 1px solid black;
+  border-radius: 1em;
+
+  padding: 2em;
+  margin: 1em;
+}
+
 .gear-box
 {
   display: flex;
