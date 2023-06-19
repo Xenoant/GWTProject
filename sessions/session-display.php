@@ -71,94 +71,101 @@ session_start();
 		<div id="Main">
 			<!-- displays basically all user chars that has been added to the session -->
 			<div id="session-display">
-			<div class="flex-row-box">
-							<div class="flex-column-box session-box">
-								<div class="flex-item">
-									<?php
-										if(isset($_SESSION['username'])) {
-											// User logged in
-											$username = $_SESSION['username'];
-											$filename = $_GET['filename'];
-											$ses_data = file_get_contents("../UserData/$username/master/$filename");
-				
-											// Decode the JSON data into an associative array
-											$data = json_decode($ses_data, true);
-				
-											// Check if the 'players' array exists
-											if(isset($data['players'])) {
-												// Loop through the players and display the information
-												foreach($data['players'] as $player) {
-													$name = $player['username'];
-													$char = $player['char'];
-													echo "Name: $name<br>";
-													echo "Character: $char<br>";
-													echo "<button class='addbtn' onclick='goToChar(\"$username\", \"$char\", \"$filename\")'>Select Char</button>";
-												}
-											} else {
-												echo "No player information found.";
-											}
-										} else {
-											echo "Please log in to get access to your saved characters or register to save characters online.";
+				<div class="flex-row-box">
+					<div class="flex-column-box session-box">
+						<div class="flex-item">
+							<?php
+								if(isset($_SESSION['username'])) {
+									// User logged in
+									$username = $_SESSION['username'];
+									$filename = $_GET['filename'];
+									$ses_data = file_get_contents("../UserData/$username/master/$filename");
+		
+									// Decode the JSON data 
+									$data = json_decode($ses_data, true);
+		
+									// Check if the 'players' array exists
+									if(isset($data['players'])) {
+										// Loop through the players and display the information
+										foreach($data['players'] as $player) {
+											$name = $player['username'];
+											$char = $player['char'];
+											echo "Name: $name<br>";
+											echo "Character: $char<br>";
+											echo "<button class='addbtn' onclick='goToChar(\"$username\", \"$char\", \"$filename\")'>Select Char</button>";
 										}
-									?>
-								</div>
-							</div>
-	
-							<div class="flex-column-box session-box">
-
-								<div class="flex-item">
-									<!-- NPC Select Part -->
-										<?php
-											// here will be the charackters from the user
-											if(isset($_SESSION['username'])) {
-												// User logged in
-												$username = $_SESSION['username'];
-												$dir = "../UserData/$username/npc";
-
-												if (is_dir($dir)){
-
-													$files = scandir($dir);
-													foreach ($files as $file) {
-														if ($file == '.' && $file == '..'){
-															continue;
-														}
-														$f_path = $dir . '/' . $file;
-
-														// process
-														$jsonData = file_get_contents($f_path);
-														$data = json_decode($jsonData);
-
-														$name = $data->name;
-														$race = $data->race;
-														$class = $data->class;
-
-														echo "
-															<div class='char-display-box'>
-																<div class='flex-row-box'>
-																	<div class='char-display-text'>
-																		Name: $name
-																	</div>
-																	<div class='char-display-text'>
-																		Race: $race
-																	</div>
-																	<div class='char-display-text'>
-																		Class: $class
-																	</div>
-																</div>
-																<button class='char-display-btn' onclick='displayChar(\"$file\");'>Select Char</button>
-															</div>";
-													}
-												}
-											}
-											else {
-												echo "Please log in to get acces to your saved chars or register to save chars online.";
-											}
-										?>
-								</div>
-
-							</div>
-							
+									} else {
+										echo "No player information found.";
+									}
+								} else {
+									echo "Please log in to get access to your saved characters or register to save characters online.";
+								}
+							?>
 						</div>
+					</div>
+
+					<div class="flex-column-box session-box">
+
+						<div class="flex-column-box">
+							<!-- NPC Select Part -->
+								<?php
+									// here will be the npcs from the session
+									if(isset($_SESSION['username'])) {
+										// User logged in
+										$username = $_SESSION['username'];
+										$dir = "../UserData/$username";
+
+										if (is_dir($dir)){
+
+											$files = scandir($dir);
+											foreach ($files as $file) {
+												if ($file == '.' || $file == '..' || $file == 'user_pw'){
+													continue;
+												}
+												$f_path = $dir . '/' . $file;
+												if (is_dir($f_path)){
+													continue;
+												}
+
+												// process
+												$jsonData = file_get_contents($f_path);
+												$data = json_decode($jsonData);
+
+												$isNpc = $data->isNpc;
+												if (!$isNpc){
+													continue;
+												}
+
+												$name = $data->name;
+												$race = $data->race;
+												$class = $data->class;
+
+												echo "
+													<div class='char-display-box'>
+														<div class='flex-row-box'>
+															<div class='char-display-text'>
+																Name: $name
+															</div>
+															<div class='char-display-text'>
+																Race: $race
+															</div>
+															<div class='char-display-text'>
+																Class: $class
+															</div>
+														</div>
+														<button class='addbtn' onclick='goToChar(\"$username\", \"$char\", \"$filename\")'>Select Char</button>
+													</div>";
+											}
+										}
+									}
+									else {
+										echo "Please log in to get acces to your saved chars or register to save chars online.";
+									}
+								?>
+						</div>
+
+					</div>		
+				</div>
 			</div>
 		</div>
 	</div>

@@ -68,54 +68,118 @@ session_start();
             ?>
         </div>
         <div id="Main">
-            <?php
-                // here will be the charackters from the user
-                if(isset($_SESSION['username'])) {
-                    // User logged in
-                    $username = $_SESSION['username'];
-                    $dir = "../UserData/$username";
+            <div class="flex-row-box">
+                <div class="flex-column-box">
+                    <?php
+                    // here will be the charackters from the user
+                    if(isset($_SESSION['username'])) {
+                        // User logged in
+                        $username = $_SESSION['username'];
+                        $dir = "../UserData/$username";
 
-                    if (is_dir($dir)){
+                        if (is_dir($dir)){
 
-                        $files = scandir($dir);
-                        foreach ($files as $file) {
-                            if ($file == 'user_pw' || $file == 'master'){
-                                continue;
-                            }
-                            elseif ($file != '.' && $file != '..'){
-                                $f_path = $dir . '/' . $file;
+                            $files = scandir($dir);
+                            foreach ($files as $file) {
+                                if ($file == 'user_pw' || $file == 'master'){
+                                    continue;
+                                }
+                                elseif ($file != '.' && $file != '..'){
+                                    $f_path = $dir . '/' . $file;
 
-                                // process
-                                $jsonData = file_get_contents($f_path);
-                                $data = json_decode($jsonData);
+                                    // process
+                                    $jsonData = file_get_contents($f_path);
+                                    $data = json_decode($jsonData);
 
-                                $name = $data->name;
-                                $race = $data->race;
-                                $class = $data->class;
+                                    $isNpc = $data->isNpc;
+                                    if ($isNpc){
+                                        continue;
+                                    }
 
-                                echo "
-                                    <div class='char-display-box'>
-                                        <div class='flex-row-box'>
-                                            <div class='char-display-text'>
-                                                Name: $name
+                                    $name = $data->name;
+                                    $race = $data->race;
+                                    $class = $data->class;
+
+                                    echo "
+                                        <div class='char-display-box'>
+                                            <div class='flex-row-box'>
+                                                <div class='char-display-text'>
+                                                    Name: $name
+                                                </div>
+                                                <div class='char-display-text'>
+                                                    Race: $race
+                                                </div>
+                                                <div class='char-display-text'>
+                                                    Class: $class
+                                                </div>
                                             </div>
-                                            <div class='char-display-text'>
-                                                Race: $race
-                                            </div>
-                                            <div class='char-display-text'>
-                                                Class: $class
-                                            </div>
-                                        </div>
-                                        <button class='char-display-btn' onclick='displayChar(\"$file\");'>Select Char</button>
-                                    </div>";
+                                            <button class='char-display-btn' onclick='displayChar(\"$file\");'>Select Char</button>
+                                        </div>";
+                                }
                             }
                         }
                     }
-                }
-                else {
-                    echo "Please log in to get acces to your saved chars or register to save chars online.";
-                }
-            ?>
+                    else {
+                        echo "Please log in to get acces to your saved chars or register to save chars online.";
+                    }
+                    ?>
+                </div>
+                <div class="flex-colum.box">
+                <?php
+                    // here will be the charackters from the user
+                    if(isset($_SESSION['username'])) {
+                        // User logged in
+                        $username = $_SESSION['username'];
+                        $dir = "../UserData/$username";
+
+                        if (is_dir($dir)){
+
+                            $files = scandir($dir);
+                            foreach ($files as $file) {
+                                if ($file == 'user_pw' || $file == 'master'){
+                                    continue;
+                                }
+                                elseif ($file != '.' && $file != '..'){
+                                    $f_path = $dir . '/' . $file;
+
+                                    // process
+                                    $jsonData = file_get_contents($f_path);
+                                    $data = json_decode($jsonData);
+
+                                    $isNpc = $data->isNpc;
+                                    if (!$isNpc){
+                                        continue;
+                                    }
+
+                                    $name = $data->name;
+                                    $race = $data->race;
+                                    $class = $data->class;
+
+                                    echo "
+                                        <div class='char-display-box'>
+                                            <div class='flex-row-box'>
+                                                <div class='char-display-text'>
+                                                    Name: $name
+                                                </div>
+                                                <div class='char-display-text'>
+                                                    Race: $race
+                                                </div>
+                                                <div class='char-display-text'>
+                                                    Class: $class
+                                                </div>
+                                            </div>
+                                            <button class='char-display-btn' onclick='displayChar(\"$file\");'>Select Char</button>
+                                        </div>";
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        echo "Please log in to get acces to your saved chars or register to save chars online.";
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
     </div>
 </body>

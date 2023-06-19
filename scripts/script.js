@@ -41,6 +41,7 @@ const raritystats = {
 var curFile = "";
 
 var charData = {
+  isNpc: false,
   name: "",
   gender: "",
   race: "",
@@ -252,6 +253,7 @@ function displayCharData(display)
   document.getElementById("lck_disp_debuff").innerHTML = (charData.debuffStat[8].value > 0 ? "( + " : "( ") + charData.debuffStat[8].value + ")";
   document.getElementById("per_disp_debuff").innerHTML = (charData.debuffStat[9].value > 0 ? "( + " : "( ") + charData.debuffStat[9].value + ")";
 
+  document.getElementById("in_npc").checked = charData.isNpc;
   document.getElementById("in_name").value = charData.name;
   document.getElementById("in_gender").value = charData.gender;
   document.getElementById("in_race").value = charData.race;
@@ -350,6 +352,7 @@ function deactivateFormElements()
 function writeInputData()
 {
   //console.log("Input saved to charData object with: " + JSON.stringify(charData));
+  charData.isNpc = document.getElementById("in_npc").checked;
   charData.name = document.getElementById("in_name").value;
   charData.gender = document.getElementById("in_gender").value;
   charData.class = document.getElementById("in_class").value;
@@ -1760,7 +1763,7 @@ function setCharData(jsonData){
 
 function displayChar(filename)
 {
-  window.location.href = "charFromServer-display.php?filename=" + filename;
+  window.location.href = "../charsites/charFromServer-display.php?filename=" + filename;
 }
 
 function goBackToSession(filename){

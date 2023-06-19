@@ -79,6 +79,12 @@ session_start();
                     <div class="flex-box">
                         <div class="flex-column-box">
                             <div class="flex-item">
+                                <label class="form-label" for="isnpc">Is NPC?: </label>
+                                <div class="form-control-wrapper">
+                                    <input class="gear-check-box" type="checkbox" id="in_npc" name="npc" onchange="writeInputData();">
+                                </div>
+                            </div>
+                            <div class="flex-item">
                                 <label class="form-label" for="name">Name: </label>
                                 <div class="form-control-wrapper">
                                     <input class="inputfield" type="text" id="in_name" name="name" placeholder="your name..." onchange="writeInputData();">
