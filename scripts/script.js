@@ -205,7 +205,7 @@ function decMainStat(valueid, amount){
 // display data in charData
 function displayCharData(display)
 {
-  // console.log("Updating Char Display with: " + JSON.stringify(charData));
+  console.log("Updating Char Display with: " + JSON.stringify(charData));
 
   // basestats
   var list = document.getElementsByClassName("basestat");
