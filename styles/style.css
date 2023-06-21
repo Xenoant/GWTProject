@@ -741,3 +741,14 @@ label
 {
 
 }
+
+.statinput
+{
+  width: 50px;
+  height: 19px;
+  font-size: 1em;
+  font-weight: normal;
+  color: black;
+
+  font-size: clamp(10px, 4vw, 20px);
+}

@@ -104,6 +104,11 @@ var charData = {
 function initNewChar()
 {
   displayCharData(false);
+
+  document.getElementById("in_npc").addEventListener("change", function(){
+    charData.isNpc = this.checked;
+    displayCharData();
+  });
 }
 
 function initLoadChar()
@@ -229,6 +234,19 @@ function displayCharData(display)
   try{
     document.getElementById("health_disp").innerHTML = charData.health + " / " + getMaxHealth();
     document.getElementById("mana_disp").innerHTML = charData.mana + " / " + getMaxMana();  
+
+    if (charData.isNpc){
+      var toDisable = document.getElementsByClassName("npc-disable");
+      toDisable.forEach(element => {
+        element.style.display = "none";
+      });
+    }
+    else{
+      var toDisable = document.getElementsByClassName("npc-disable");
+      toDisable.forEach(element => {
+        element.style.display = "block";
+      });
+    }
   } catch{}
  
   document.getElementById("str_disp_extra").innerHTML = "( + " + charData.gearStat[0].value + ")";
