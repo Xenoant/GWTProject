@@ -407,6 +407,9 @@ session_start();
         if(isset($_SESSION['username'])) {
             // User logged in
             $username = $_SESSION['username'];
+            if (isset($_GET['username'])){
+                $username = $_GET['username'];
+            }
             $filename = $_GET['filename'];
             $jsonData = file_get_contents("../UserData/$username/$filename");
         }

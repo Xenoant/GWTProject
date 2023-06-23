@@ -1543,8 +1543,10 @@ function rollDice()
   var gear = document.getElementById("in_gear").checked;
 
   var max = removeFirstLetterAndParseInt(sides.value);
+  console.log(max);
 
   value = getRandomValue(max);
+  console.log(value);
 
   if (stat !== "none"){
     value += getCurStatValue(stat, gear);
@@ -1579,13 +1581,13 @@ function removeFirstLetterAndParseInt(str) {
 
 function getCurStatValue(stat, gear){
   var value = 0;
+
   value += charData.base;
   value += charData[stat];
-  console.log(charData[stat]);
 
   Array.from(charData.debuffStat).forEach(element => {
     if (element.name === stat){
-      value += element.amount;
+      value += element.value;
     }
   });
 
@@ -1757,6 +1759,8 @@ window.addEventListener('beforeunload', function(){
 
 function setCharData(jsonData){
   charData = jsonData;
+  console.log(jsonData);
+
   document.getElementById("char_display").style.display = "block";
   displayCharData(true);
 }
