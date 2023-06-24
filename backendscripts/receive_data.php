@@ -20,6 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // User is logged in 
             // Prepare the file path
             $username = $_SESSION['username'];
+            if (isset($_GET['user'])){
+                $username = $_GET['user'];
+            }
             $directory = "../UserData/$username"; 
 
             $filename = $_SESSION['username'] . uniqid() . '.json';

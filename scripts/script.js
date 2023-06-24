@@ -1612,10 +1612,13 @@ function editChar()
   btn1.style.display = "none";
   btn2.style.display = "block";
 }
-function saveChar(filename)
+function saveChar(filename, user)
 {
-  console.log(filename);
-  submitCharData(filename);
+  if(user != undefined && user != null){
+    submitCharData(filename, user);
+  } else{
+    submitCharData(filename);
+  }
 
   deactivateFormElements();
 
@@ -1693,7 +1696,7 @@ function processData(file)
 }
 
 // send data to server
-function submitCharData(filename) {
+function submitCharData(filename, user) {
   console.log("Initiate Char Data submit...");
 
   // Create an XMLHttpRequest object
@@ -1702,8 +1705,11 @@ function submitCharData(filename) {
   var url = "../backendscripts/receive_data.php";
 
   // Specify the URL of the PHP script that will handle the data
-  if (filename != undefined && filename != null){
+  if (filename != undefined && filename != null && (user == null || user == undefined)){
     url = "../backendscripts/receive_data.php?filename=" + filename;
+  }
+  else if (filename != undefined && filename != null && user != null && user != undefined) {
+    url = "../backendscripts/receive_data.php?filename=" + filename + "&user=" + user;
   }
 
   console.log(url);

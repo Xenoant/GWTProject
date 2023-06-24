@@ -396,7 +396,15 @@ session_start();
                 </div>
                 <button id="editbtn" class="submitbtn" onclick="editChar();">Edit</button>
                 <?php $filename = $_GET['filename'] ?>
-                <?php echo "<button id='savebtn' class='submitbtn' onclick='saveChar(\"$filename\");' style='display: none;'>Save</button>" ?>
+                <?php 
+                    if (isset($_GET['username'])){
+                        $user = $_GET['username'];
+                        echo "<button id='savebtn' class='submitbtn' onclick='saveChar(\"$filename\", \"$user\");' style='display: none;'>Save</button>";
+                    }
+                    else {
+                        echo "<button id='savebtn' class='submitbtn' onclick='saveChar(\"$filename\");' style='display: none;'>Save</button>";
+                    }
+                ?>
                 <button class="submitbtn" onclick="downloadCharacterData();">Get Jason Char Data Sheet</button>
             </div>
         </div>
