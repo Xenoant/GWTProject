@@ -352,6 +352,17 @@ session_start();
                             <!-- Start Item -->
                             <div id="item_disp">
                                 <h3>Items</h3>
+                                <div class="flex-row-box">
+                                    <div class="flex-column-box" id="item-col-1">
+
+                                    </div>
+                                    <div class="flex-column-box" id="item-col-2">
+
+                                    </div>
+                                    <div class="flex-column-box" id="item-col-3">
+
+                                    </div>
+                                </div>
                             </div>
                             <button id="addbtn" class="addbtn" onclick="addItem(true);">Add Item</button>
             
