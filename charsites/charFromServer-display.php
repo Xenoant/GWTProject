@@ -21,7 +21,7 @@ session_start();
         <div id="Logo">
             <img class="pageLogo" src="../Images/logo.png" alt="D & D" style="color: rgb(156, 0, 0);">
             <?php 
-                if (isset($_GET['username']) && isset($_GET['session'])){
+                if (isset($_GET['session'])){
                     $session = $_GET['session'];
                     echo "<button class='normalbtn' onclick='goBackToSession(\"$session\")'>Back</button>";
                 }   
@@ -419,6 +419,10 @@ session_start();
             // User logged in
             $username = $_SESSION['username'];
             $filename = $_GET['filename'];
+
+            if (isset($_GET['user'])){
+                $username = $_GET['user'];
+            }
             $jsonData = file_get_contents("../UserData/$username/$filename");
         }
         else {

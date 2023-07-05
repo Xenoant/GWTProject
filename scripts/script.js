@@ -893,7 +893,7 @@ function addItem(interactable, parseData) {
 
   var statsValueContainer = document.createElement("div");
   statsValueContainer.className = "statsvaluecontainer"; 
-  statsValueContainer.style.display = interactable ? "none" : "block";
+  statsValueContainer.style.display = "none";
   
   var rarityStatsLabel = document.createElement("div");
   rarityStatsLabel.innerHTML = "Additional Stats: ";

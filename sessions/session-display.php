@@ -92,7 +92,7 @@ session_start();
 											$char = $player['char'];
 											echo "Name: $name<br>";
 											echo "Character: $char<br>";
-											echo "<button class='addbtn' onclick='goToChar(\"$username\", \"$char\", \"$filename\")'>Select Char</button>";
+											echo "<button class='addbtn' onclick='goToChar(\"$name\", \"$char\", \"$filename\")'>Select Char</button>";
 										}
 									} else {
 										echo "No player information found.";
