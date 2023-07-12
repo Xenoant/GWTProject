@@ -21,7 +21,7 @@ session_start();
         <div id="Logo">
             <img class="pageLogo" src="../Images/logo.png" alt="D & D" style="color: rgb(156, 0, 0);">
             <?php 
-                if (isset($_GET['username']) && isset($_GET['session'])){
+                if (isset($_GET['session'])){
                     $session = $_GET['session'];
                     echo "<button class='normalbtn' onclick='goBackToSession(\"$session\")'>Back</button>";
                 }   
@@ -129,17 +129,17 @@ session_start();
                         <div class="flex-row-box">
                             <div class="flex-column-box">
 
-                                <div class="flex-item">
+                                <div class="flex-item npc-disable">
                                     <label class="health-label" for="health">Health: </label>
                                     <div class="form-control-wrapper">
                                         <span class="valuetext" id="health_disp">_placeholder</span>
                                         <button class="valuebtn-non" onclick="addMainStat('health', 'health_change_amount');">+</button>
-                                        <input type="number" id="health_change_amount">
+                                        <input type="number" id="health_change_amount" class="statinput">
                                         <button class="valuebtn-non" onclick="decMainStat('health', 'health_change_amount');">-</button>
                                     </div>
                                 </div>
 
-                                <div class="flex-item">
+                                <div class="flex-item npc-disable">
                                     <label class="form-label" for="basestat">Base: </label>
                                     <div class="form-control-wrapper">
                                         <button class="valuebtn" onclick="addValue('base');">+</button>
@@ -211,7 +211,7 @@ session_start();
                                     <div class="form-control-wrapper">
                                         <span class="valuetext" id="mana_disp">_placeholder</span>
                                         <button class="valuebtn-non" onclick="addMainStat('mana', 'mana_change_amount');">+</button>
-                                        <input type="number" id="mana_change_amount">
+                                        <input type="number" id="mana_change_amount" class="statinput">
                                         <button class="valuebtn-non" onclick="decMainStat('mana', 'mana_change_amount');">-</button>
                                     </div>
                                 </div>
@@ -354,6 +354,17 @@ session_start();
                             <!-- Start Item -->
                             <div id="item_disp">
                                 <h3>Items</h3>
+                                <div class="flex-row-box">
+                                    <div class="flex-column-box" id="item-col-1">
+
+                                    </div>
+                                    <div class="flex-column-box" id="item-col-2">
+
+                                    </div>
+                                    <div class="flex-column-box" id="item-col-3">
+
+                                    </div>
+                                </div>
                             </div>
                             <button id="addbtn" class="addbtn" onclick="addItem(true);">Add Item</button>
             
@@ -419,6 +430,10 @@ session_start();
                 $username = $_GET['username'];
             }
             $filename = $_GET['filename'];
+
+            if (isset($_GET['user'])){
+                $username = $_GET['user'];
+            }
             $jsonData = file_get_contents("../UserData/$username/$filename");
         }
         else {

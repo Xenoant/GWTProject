@@ -86,6 +86,10 @@ session_start();
                     </p>
                     <li><strong>Secure Passowrd Save</strong></li>
                     <p>Yeah. Your Password no longer gets saved in clear text. So I cant look at them. Nice or not?</p>
+                    <li><strong>Session Char Change</strong></li>
+                    <p>Gamemaster can now change char sheets</p>
+                    <li><strong>NPC System</strong></li>
+                    <p>You can create NPCs now, which you can acces from any session at any time.</p>
                 </ol>
             </div>
             <div id="part3" style="display: none;">

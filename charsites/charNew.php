@@ -126,7 +126,7 @@ session_start();
                                     <div class="form-control-wrapper">
                                         <span class="valuetext" id="health_disp">_placeholder</span>
                                         <button class="valuebtn-non" onclick="addMainStat('health', 'health_change_amount');">+</button>
-                                        <input type="number" id="health_change_amount">
+                                        <input type="number" id="health_change_amount" class="statinput">
                                         <button class="valuebtn-non" onclick="decMainStat('health', 'health_change_amount');">-</button>
                                     </div>
                                 </div>
@@ -203,7 +203,7 @@ session_start();
                                     <div class="form-control-wrapper">
                                         <span class="valuetext" id="mana_disp">_placeholder</span>
                                         <button class="valuebtn-non" onclick="addMainStat('mana', 'mana_change_amount');">+</button>
-                                        <input type="number" id="mana_change_amount">
+                                        <input type="number" id="mana_change_amount" class="statinput">
                                         <button class="valuebtn-non" onclick="decMainStat('mana', 'mana_change_amount');">-</button>
                                     </div>
                                 </div>
@@ -309,6 +309,18 @@ session_start();
                             <!-- Start Item -->
                             <div id="item_disp">
                                 <h3>Items</h3>
+                                <!-- Grid layout (3 columns in a row) -->
+                                <div class="flex-row-box">
+                                    <div class="flex-column-box" id="item-col-1">
+
+                                    </div>
+                                    <div class="flex-column-box" id="item-col-2">
+
+                                    </div>
+                                    <div class="flex-column-box" id="item-col-3">
+
+                                    </div>
+                                </div>
                             </div>
                             <button id="addbtn" class="addbtn" onclick="addItem(true);">Add Item</button>
             

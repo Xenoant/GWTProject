@@ -172,5 +172,5 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function goToChar(user, char, ses){
-  window.location.href = "../charsites/charFromServer-display.php?username=" + user + "&filename=" + char + "&session=" + ses;
+  window.location.href = "../charsites/charFromServer-display.php?user=" + user + "&filename=" + char + "&session=" + ses;
 }

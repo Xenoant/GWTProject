@@ -104,6 +104,11 @@ var charData = {
 function initNewChar()
 {
   displayCharData(false);
+
+  document.getElementById("in_npc").addEventListener("change", function(){
+    charData.isNpc = this.checked;
+    displayCharData();
+  });
 }
 
 function initLoadChar()
@@ -205,7 +210,7 @@ function decMainStat(valueid, amount){
 // display data in charData
 function displayCharData(display)
 {
-  // console.log("Updating Char Display with: " + JSON.stringify(charData));
+  console.log("Updating Char Display with: " + JSON.stringify(charData));
 
   // basestats
   var list = document.getElementsByClassName("basestat");
@@ -229,6 +234,19 @@ function displayCharData(display)
   try{
     document.getElementById("health_disp").innerHTML = charData.health + " / " + getMaxHealth();
     document.getElementById("mana_disp").innerHTML = charData.mana + " / " + getMaxMana();  
+
+    if (charData.isNpc){
+      var toDisable = document.getElementsByClassName("npc-disable");
+      toDisable.forEach(element => {
+        element.style.display = "none";
+      });
+    }
+    else{
+      var toDisable = document.getElementsByClassName("npc-disable");
+      toDisable.forEach(element => {
+        element.style.display = "block";
+      });
+    }
   } catch{}
  
   document.getElementById("str_disp_extra").innerHTML = "( + " + charData.gearStat[0].value + ")";
@@ -271,26 +289,26 @@ function displayCharData(display)
       addDebuff(element.desc, element.stat, element.amount);
     });
     charData.skills.forEach(element => {
-      addSkill(false, element.name, element.description);
+      addSkill(true, element.name, element.description);
     });
     charData.traits.forEach(element => {
-      addTrait(false, element.name, element.description);
+      addTrait(true, element.name, element.description);
     });
     charData.knows.forEach(element => {
-      addKnowledge(false, element.name, element.description, element.state);
+      addKnowledge(true, element.name, element.description, element.state);
     });
     charData.rings.forEach(element => {
-      addRing(false, element.name);
+      addRing(true, element.name);
     });
     charData.items.forEach(element => {
-      addItem(false, element)
+      addItem(true, element)
     });
     charData.gear.forEach(element => {
       changedItem();
       setGear();
     });
     charData.notes.forEach(element => {
-      addNote(false, element.header, element.text);
+      addNote(true, element.header, element.text);
     });
   }
 }
@@ -329,23 +347,23 @@ function deactivateFormElements()
 {
   var allBtns = document.getElementsByClassName("valuebtn");
   Array.from(allBtns).forEach(element => {
-    element.disabled = true;
+    element.disabled = false;
   });
 
   var allBtns2 = document.getElementsByClassName("addbtn");
   Array.from(allBtns2).forEach(element => {
-    element.disabled = true;
+    element.disabled = false;
   });
 
   // selectfield / inputfield
   var allBtns3 = document.getElementsByClassName("selectfield");
   Array.from(allBtns3).forEach(element => {
-    element.disabled = true;
+    element.disabled = false;
   });
 
   var allBtns4 = document.getElementsByClassName("inputfield");
   Array.from(allBtns4).forEach(element => {
-    element.disabled = true;
+    element.disabled = false;
   });
 }
 
@@ -766,6 +784,8 @@ function addKnowledge(interactable, _name, _desc, _state)
   });
 }
 
+var displayCount = 3;
+
 function addRing(interactable, _name)
 {
   interactable = !interactable;
@@ -873,7 +893,7 @@ function addItem(interactable, parseData) {
 
   var statsValueContainer = document.createElement("div");
   statsValueContainer.className = "statsvaluecontainer"; 
-  statsValueContainer.style.display = interactable ? "none" : "block";
+  statsValueContainer.style.display = "none";
   
   var rarityStatsLabel = document.createElement("div");
   rarityStatsLabel.innerHTML = "Additional Stats: ";
@@ -944,7 +964,16 @@ function addItem(interactable, parseData) {
     });
   }
 
-  document.getElementById("item_disp").appendChild(itemContainer);
+  var toAppand = [
+    "item-col-1",
+    "item-col-2",
+    "item-col-3"
+  ];
+
+  document.getElementById(toAppand[displayCount % 3]).appendChild(itemContainer);
+  console.log(displayCount % 3);
+
+  displayCount += 1;
 
   if (parseData != undefined || parseData != null) {
     itemNameInput.value = parseData.name;
@@ -1423,6 +1452,16 @@ function createDicePreset(_sides, _value, _equip) {
 
     var value = getRandomValue(max);
 
+    if (value === 20 || value === 1){
+      display.innerHTML = "Net " + value;
+    }
+    else{
+      if (stat !== "none"){
+        value += getCurStatValue(stat, gear);
+      }
+      display.innerHTML = value;
+    }
+
     if (stat !== "none"){
       value += getCurStatValue(stat, gear);
     }
@@ -1548,11 +1587,16 @@ function rollDice()
   value = getRandomValue(max);
   console.log(value);
 
-  if (stat !== "none"){
-    value += getCurStatValue(stat, gear);
+  if (value === 20 || value === 1){
+    display.innerHTML = "Net " + value;
   }
-
-  display.innerHTML = value;
+  else{
+    if (stat !== "none"){
+      value += getCurStatValue(stat, gear);
+    }
+  
+    display.innerHTML = value;
+  }
 }
 
 function justADice()
